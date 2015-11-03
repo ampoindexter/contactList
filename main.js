@@ -44,10 +44,13 @@ function removeContact(event) {
 	var i = $targetRow.index();
 	contactList.splice(i, 1);
 	$targetRow.empty();
+	// localStorage.contacts = JSON.stringify(contactList)
 }
 
 function editContact(event) {
-	var $target = $(event.t)
+	var $target = $(event.target)
+	var $targetCell = $target.find('td');
+	
 }
 
 
