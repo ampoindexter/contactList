@@ -17,10 +17,7 @@ function addContact() {
 	contact.email = $('#email').val();
 	contact.phone = $('#phone').val();
 	contact.address = $('#address').val();
-	console.log(contact);
-	console.log(contactList);
 	contactList.push(contact);
-	console.log(contactList);
 	localStorage.contacts = JSON.stringify(contactList);
 	updateTable();
 }
@@ -44,7 +41,7 @@ function removeContact(event) {
 	var i = $targetRow.index();
 	contactList.splice(i, 1);
 	$targetRow.empty();
-	// localStorage.contacts = JSON.stringify(contactList)
+	localStorage.contacts = JSON.stringify(contactList)
 }
 
 function editContact(event) {
