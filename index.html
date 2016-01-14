@@ -10,18 +10,20 @@
 <body>
   <div class="container">
     <h1>Contact List</h1>
-    <input type="text" id='name'>
-    <input type="email" id='email'>
-    <input type="tel" id="phone">
-    <input type="text" id="address">
-    <button class="btn btn-default" id='add'>Add</button>
-    <table class="table table-bordered">
+    <form>
+      <input type="text" id='name' placeholder="Contact Name">
+      <input type="email" id='email' placeholder ="Contact Email">
+      <input type="tel" id="phone" placeholder="Contact Phone">
+      <input type="text" id="address" placeholder="Contact Address">
+      <button class="btn btn-default" id='add'>Add</button>
+    </form>
+    <table class="table table-bordered" id='contactTable'>
       <thead>
         <tr>
-          <th class='col-xs-3'>Contact</th>
-          <th class='col-xs-2'>Email</th>
-          <th class='col-xs-2'>Phone Number</th>
-          <th class='col-xs-4'>Address</th>
+          <th class='col-xs-3 names' id='names'>Contact</th>
+          <th class='col-xs-2 emails' id='emails'>Email</th>
+          <th class='col-xs-2 phoneNumbers' id='phoneNumbers'>Phone Number</th>
+          <th class='col-xs-4 addresses' id='addresses'>Address</th>
           <th class='col-xs-1'>Remove</th>
         </tr>
       </thead>
@@ -32,6 +34,7 @@
 ​
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

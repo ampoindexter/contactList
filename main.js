@@ -7,7 +7,8 @@ function init() {
 	updateTable();
 	$('#add').click(addContact);
 	$('.remove').click(removeContact);
-	$('td').dblclick(editContact);
+	$('.table').on('dblclick', 'th', sortContacts);
+	// $('td').dblclick(editContact);
 
 }
 
@@ -18,8 +19,13 @@ function addContact() {
 	contact.phone = $('#phone').val();
 	contact.address = $('#address').val();
 	contactList.push(contact);
-	localStorage.contacts = JSON.stringify(contactList);
+	saveToStorage();
+	window.location.reload();
 	updateTable();
+	$('#name').val('');
+	$('#email').val('');
+	$('#phone').val('');
+	$('#address').val('');
 }
 
 function updateTable() {
@@ -30,18 +36,19 @@ function updateTable() {
 		.append($('<td>').text(contact.email))
 		.append($('<td>').text(contact.phone))
 		.append($('<td>').text(contact.address))
-		.append($('<td>').append('<a href="#"><i class = "fa fa-trash-o remove person'+index+'"></i></a>'))        
+		.append($('<td>').append('<a href="#"><i class = "fa fa-trash-o remove person'+index+' '+index+'"></i></a>'))        
 	});
 	$('#list').append(rows);
 }
 
-function removeContact(event) {
-	var $target = $(event.target);
-	var $targetRow = $target.closest('tr');
-	var i = $targetRow.index();
+function removeContact() {
+	var $targetRow = this.closest('tr');
+	var i = this.classList[4];
+	i = parseInt(i);
 	contactList.splice(i, 1);
-	$targetRow.empty();
-	localStorage.contacts = JSON.stringify(contactList)
+	saveToStorage();
+	window.location.reload();
+	updateTable();
 }
 
 function editContact(event) {
@@ -50,10 +57,32 @@ function editContact(event) {
 	
 }
 
+function saveToStorage() {
+	localStorage.contacts = JSON.stringify(contactList)
+}
 
 
-
-
-
-
-
+function sortContacts(e) {
+  var $targetId = $(e.target).attr('id');
+  if ($targetId == 'names') {
+    contactList = _.sortBy(contactList, function(a) {
+      return a.names;
+    });
+  }  if ($targetId == 'emails') {
+    contactList = _.sortBy(contactList, function(a) {
+      return a.emails;
+    });
+  }
+  if ($targetId == 'phoneNumbers') {
+    contactList = _.sortBy(contactList, function(a) {
+      return a.phoneNumbers;
+    });
+  }
+  if ($targetId == 'addresses') {
+    contactList = _.sortBy(contactList, function(a) {
+      return a.addresses;
+    });
+  }
+  saveToStorage();
+  updateTable();
+}
