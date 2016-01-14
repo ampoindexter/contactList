@@ -7,7 +7,7 @@ function init() {
 	updateTable();
 	$('#add').click(addContact);
 	$('.remove').click(removeContact);
-	$('.table').on('dblclick', 'th', sortContacts);
+	$('table').on('click', 'th', sortContacts);
 	// $('td').dblclick(editContact);
 
 }
@@ -65,22 +65,22 @@ function saveToStorage() {
 function sortContacts(e) {
   var $targetId = $(e.target).attr('id');
   if ($targetId == 'names') {
-    contactList = _.sortBy(contactList, function(a) {
-      return a.names;
+    contactList = _.sortBy(contactList, function(o) {
+      return o.name;
     });
   }  if ($targetId == 'emails') {
-    contactList = _.sortBy(contactList, function(a) {
-      return a.emails;
+    contactList = _.sortBy(contactList, function(o) {
+      return o.email;
     });
   }
   if ($targetId == 'phoneNumbers') {
-    contactList = _.sortBy(contactList, function(a) {
-      return a.phoneNumbers;
+    contactList = _.sortBy(contactList, function(o) {
+      return o.phone;
     });
   }
   if ($targetId == 'addresses') {
-    contactList = _.sortBy(contactList, function(a) {
-      return a.addresses;
+    contactList = _.sortBy(contactList, function(o) {
+      return o.address;
     });
   }
   saveToStorage();
